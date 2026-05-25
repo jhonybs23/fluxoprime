@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:conv="clr-namespace:FluxoPrimeMaui.Converters"
+             x:Class="FluxoPrimeMaui.MainPage"
+             x:Name="RootPage"
+             Title="{Binding Title}"
+             BackgroundColor="#050912">
+
+    <ContentPage.Resources>
+        <conv:ImageUrlConverter x:Key="ImageUrlConverter" />
+        <conv:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+    </ContentPage.Resources>
+
+    <Grid Padding="16,12"
+          BackgroundColor="#050912">
+
+        <ScrollView IsVisible="{Binding IsHomeSection}">
+            <VerticalStackLayout Spacing="16">
+                <Grid ColumnDefinitions="*,Auto">
+                    <HorizontalStackLayout Spacing="10">
+                        <Border WidthRequest="44"
+                                HeightRequest="44"
+                                BackgroundColor="#12345A"
+                                Stroke="#1F568E">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Label Text="TV"
+                                   TextColor="#71C7FF"
+                                   FontAttributes="Bold"
+                                   FontSize="16"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center" />
+                        </Border>
+                        <VerticalStackLayout Spacing="0"
+                                             VerticalOptions="Center">
+                            <Label Text="FluxoPrime TV"
+                                   TextColor="White"
+                                   FontSize="28"
+                                   FontAttributes="Bold" />
+                            <Label Text="LIVE"
+                                   TextColor="#FFD34D"
+                                   FontSize="13"
+                                   FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+
+                    <Button Grid.Column="1"
+                            Text="Sair"
+                            Command="{Binding LogoutCommand}"
+                            BackgroundColor="#121A2B"
+                            TextColor="#B9C8E8"
+                            Padding="14,8" />
+                </Grid>
+
+                <SearchBar Text="{Binding SearchText}"
+                           Placeholder="Buscar canais, filmes, series..."
+                           BackgroundColor="#0B1220"
+                           TextColor="White"
+                           PlaceholderColor="#7E8AA8"
+                           CancelButtonColor="#7E8AA8"
+                           HeightRequest="42" />
+
+                <Grid RowDefinitions="130,130,110"
+                      ColumnDefinitions="*,*"
+                      RowSpacing="10"
+                      ColumnSpacing="10">
+                    <Border Grid.RowSpan="2"
+                            Padding="16"
+                            BackgroundColor="#10243C"
+                            Stroke="#244A78"
+                            StrokeThickness="1">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8" />
+                        </Border.StrokeShape>
+                        <Grid RowDefinitions="*,Auto,Auto">
+                            <Label Text="TV"
+                                   TextColor="#71C7FF"
+                                   FontSize="38"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center" />
+                            <Label Grid.Row="1"
+                                   Text="TV ao vivo"
+                                   TextColor="White"
+                                   FontSize="20"
+                                   FontAttributes="Bold" />
+                            <Label Grid.Row="2"
+                                   Text="Canais e eventos"
+                                   TextColor="#9CB0D2"
+                                   FontSize="12" />
+                        </Grid>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectSectionCommand}"
+                                                  CommandParameter="live" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <Border Grid.Column="1"
+                            Padding="14"
+                            BackgroundColor="#141D33"
+                            Stroke="#263E68"
+                            StrokeThickness="1">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8" />
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="4"
+                                             VerticalOptions="Center">
+                            <Label Text="MOV"
+                                   TextColor="#FFD34D"
+                                   FontSize="24"
+                                   FontAttributes="Bold" />
+                            <Label Text="Filmes"
+                                   TextColor="White"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                            <Label Text="Catalogo"
+                                   TextColor="#9CB0D2"
+                                   FontSize="12" />
+                        </VerticalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectSectionCommand}"
+                                                  CommandParameter="vod" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <Border Grid.Row="1"
+                            Grid.Column="1"
+                            Padding="14"
+                            BackgroundColor="#172044"
+                            Stroke="#32417E"
+                            StrokeThickness="1">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8" />
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="4"
+                                             VerticalOptions="Center">
+                            <Label Text="SER"
+                                   TextColor="#BBA8FF"
+                                   FontSize="24"
+                                   FontAttributes="Bold" />
+                            <Label Text="Series"
+                                   TextColor="White"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                            <Label Text="Episodios"
+                                   TextColor="#9CB0D2"
+                                   FontSize="12" />
+                        </VerticalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectSectionCommand}"
+                                                  CommandParameter="series" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <Border Grid.Row="2"
+                            Padding="14"
+                            BackgroundColor="#10243C"
+                            Stroke="#244A78"
+                            StrokeThickness="1">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8" />
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="4"
+                                             VerticalOptions="Center">
+                            <Label Text="FAV"
+                                   TextColor="#71C7FF"
+                                   FontSize="22"
+                                   FontAttributes="Bold" />
+                            <Label Text="Favoritos"
+                                   TextColor="White"
+                                   FontSize="17"
+                                   FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ShowFavoritesCommand}" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <Border Grid.Row="2"
+                            Grid.Column="1"
+                            Padding="14"
+                            BackgroundColor="#121A2B"
+                            Stroke="#263650"
+                            StrokeThickness="1">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8" />
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="4"
+                                             VerticalOptions="Center">
+                            <Label Text="HIS"
+                                   TextColor="#FFD34D"
+                                   FontSize="22"
+                                   FontAttributes="Bold" />
+                            <Label Text="Historico"
+                                   TextColor="White"
+                                   FontSize="17"
+                                   FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ShowHistoryCommand}" />
+                        </Border.GestureRecognizers>
+                    </Border>
+                </Grid>
+
+                <VerticalStackLayout Spacing="8">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Continuar assistindo"
+                               TextColor="White"
+                               FontSize="18"
+                               FontAttributes="Bold" />
+                        <Button Grid.Column="1"
+                                Text="Ver"
+                                Command="{Binding ShowHistoryCommand}"
+                                BackgroundColor="#13223A"
+                                TextColor="#B9C8E8"
+                                Padding="10,4" />
+                    </Grid>
+
+                    <Label Text="Seu historico aparece aqui depois que abrir algum conteudo."
+                           TextColor="#8FA6CC"
+                           FontSize="13"
+                           IsVisible="{Binding HasRecentStreams, Converter={StaticResource InvertedBoolConverter}}" />
+
+                    <CollectionView ItemsSource="{Binding RecentStreams}"
+                                    IsVisible="{Binding HasRecentStreams}"
+                                    ItemsLayout="HorizontalList"
+                                    HeightRequest="150"
+                                    SelectionMode="None"
+                                    ItemSizingStrategy="MeasureFirstItem">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <VerticalStackLayout WidthRequest="96"
+                                                     Margin="0,0,10,0"
+                                                     Spacing="4">
+                                    <Border BackgroundColor="#07101D"
+                                            Stroke="#1F3356"
+                                            StrokeThickness="1"
+                                            HeightRequest="116">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="8" />
+                                        </Border.StrokeShape>
+                                        <Image Source="{Binding Icon, Converter={StaticResource ImageUrlConverter}}"
+                                               Aspect="AspectFill" />
+                                    </Border>
+                                    <Label Text="{Binding Name}"
+                                           TextColor="White"
+                                           FontSize="10"
+                                           FontAttributes="Bold"
+                                           MaxLines="2"
+                                           LineBreakMode="TailTruncation" />
+                                    <VerticalStackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.SelectStreamCommand, Source={x:Reference RootPage}}"
+                                                              CommandParameter="{Binding .}" />
+                                    </VerticalStackLayout.GestureRecognizers>
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Grid IsVisible="{Binding IsContentSection}"
+              RowDefinitions="Auto,Auto,Auto,*"
+              RowSpacing="8">
+            <Grid ColumnDefinitions="Auto,*,Auto"
+                  ColumnSpacing="10">
+                <Button Text="Inicio"
+                        Command="{Binding ShowHomeCommand}"
+                        BackgroundColor="#121A2B"
+                        TextColor="#B9C8E8"
+                        Padding="12,7"
+                        HeightRequest="38" />
+                <Label Grid.Column="1"
+                       Text="{Binding Title}"
+                       TextColor="White"
+                       FontSize="26"
+                       FontAttributes="Bold"
+                       VerticalTextAlignment="Center"
+                       LineBreakMode="TailTruncation" />
+                <Button Grid.Column="2"
+                        Text="Sair"
+                        Command="{Binding LogoutCommand}"
+                        BackgroundColor="#121A2B"
+                        TextColor="#B9C8E8"
+                        Padding="12,7"
+                        HeightRequest="38" />
+            </Grid>
+
+            <SearchBar Grid.Row="1"
+                       Text="{Binding SearchText}"
+                       IsVisible="{Binding IsContentSearchVisible}"
+                       Placeholder="Buscar..."
+                       BackgroundColor="#0B1220"
+                       TextColor="White"
+                       PlaceholderColor="#7E8AA8"
+                       CancelButtonColor="#7E8AA8"
+                       HeightRequest="38" />
+
+            <CollectionView Grid.Row="2"
+                            ItemsSource="{Binding Categories}"
+                            IsVisible="{Binding IsCategoryStripVisible}"
+                            ItemsLayout="HorizontalList"
+                            HeightRequest="52"
+                            SelectionMode="None"
+                            ItemSizingStrategy="MeasureFirstItem">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="14,8"
+                                Margin="0,0,8,0"
+                                BackgroundColor="#13223A"
+                                Stroke="#26466F"
+                                StrokeThickness="1">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="8" />
+                            </Border.StrokeShape>
+                            <Label Text="{Binding Name}"
+                                   TextColor="#EAF1FF"
+                                   FontSize="13"
+                                   FontAttributes="Bold"
+                                   MaxLines="1"
+                                   LineBreakMode="TailTruncation" />
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.FilterByCategoryCommand, Source={x:Reference RootPage}}"
+                                                      CommandParameter="{Binding .}" />
+                            </Border.GestureRecognizers>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Grid Grid.Row="3">
+                <CollectionView ItemsSource="{Binding CategoryCards}"
+                                IsVisible="{Binding IsLiveCategoryHubVisible}"
+                                ItemSizingStrategy="MeasureFirstItem"
+                                SelectionMode="None">
+                    <CollectionView.Header>
+                        <VerticalStackLayout Spacing="4"
+                                             Margin="0,0,0,12">
+                            <Label Text="Grupos de canais"
+                                   TextColor="White"
+                                   FontSize="20"
+                                   FontAttributes="Bold" />
+                            <Label Text="Globo, SBT, Telecine, HBO e outros pacotes ficam aqui."
+                                   TextColor="#8FA6CC"
+                                   FontSize="13"
+                                   LineBreakMode="TailTruncation" />
+                        </VerticalStackLayout>
+                    </CollectionView.Header>
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         Span="2"
+                                         HorizontalItemSpacing="10"
+                                         VerticalItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="12"
+                                    BackgroundColor="#101A2D"
+                                    Stroke="#274B7C"
+                                    StrokeThickness="1"
+                                    HeightRequest="94">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="8" />
+                                </Border.StrokeShape>
+                                <Grid RowDefinitions="Auto,*,Auto">
+                                    <Grid ColumnDefinitions="Auto,*"
+                                          ColumnSpacing="8">
+                                        <Border WidthRequest="30"
+                                                HeightRequest="30"
+                                                BackgroundColor="#17365C"
+                                                Stroke="#2F6FA7">
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="8" />
+                                            </Border.StrokeShape>
+                                            <Label Text="TV"
+                                                   TextColor="#FFD34D"
+                                                   FontSize="11"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Center"
+                                                   VerticalTextAlignment="Center" />
+                                        </Border>
+                                        <Label Grid.Column="1"
+                                               Text="{Binding Name}"
+                                               TextColor="White"
+                                               FontSize="15"
+                                               FontAttributes="Bold"
+                                               MaxLines="2"
+                                               LineBreakMode="TailTruncation"
+                                               VerticalTextAlignment="Center" />
+                                    </Grid>
+
+                                    <BoxView Grid.Row="1"
+                                             HeightRequest="1"
+                                             Color="#1B3152"
+                                             VerticalOptions="End" />
+
+                                    <Label Grid.Row="2"
+                                           Text="Abrir canais"
+                                           TextColor="#8FA6CC"
+                                           FontSize="11"
+                                           FontAttributes="Bold" />
+                                </Grid>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.FilterByCategoryCommand, Source={x:Reference RootPage}}"
+                                                          CommandParameter="{Binding .}" />
+                                </Border.GestureRecognizers>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <CollectionView ItemsSource="{Binding Streams}"
+                                IsVisible="{Binding IsLiveChannelListVisible}"
+                                ItemSizingStrategy="MeasureFirstItem"
+                                SelectionMode="None">
+                    <CollectionView.Header>
+                        <Grid IsVisible="{Binding IsLiveGroupBackVisible}"
+                              ColumnDefinitions="*,Auto"
+                              ColumnSpacing="10"
+                              Margin="0,0,0,10">
+                            <VerticalStackLayout Spacing="2"
+                                                 VerticalOptions="Center">
+                                <Label Text="{Binding CategorySummaryText}"
+                                       TextColor="White"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       MaxLines="1"
+                                       LineBreakMode="TailTruncation" />
+                                <Label Text="Canais deste grupo"
+                                       TextColor="#8FA6CC"
+                                       FontSize="12"
+                                       MaxLines="1"
+                                       LineBreakMode="TailTruncation" />
+                            </VerticalStackLayout>
+                            <Button Grid.Column="1"
+                                    Text="Voltar"
+                                    Command="{Binding ShowLiveGroupsCommand}"
+                                    BackgroundColor="#FFD34D"
+                                    TextColor="#06101D"
+                                    FontAttributes="Bold"
+                                    HeightRequest="38"
+                                    Padding="12,7" />
+                        </Grid>
+                    </CollectionView.Header>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="10"
+                                    Margin="0,0,0,8"
+                                    BackgroundColor="#0B1220"
+                                    Stroke="#1C3154"
+                                    StrokeThickness="1">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="8" />
+                                </Border.StrokeShape>
+                                <Grid ColumnDefinitions="66,*" ColumnSpacing="12">
+                                    <Border WidthRequest="66"
+                                            HeightRequest="66"
+                                            BackgroundColor="#13223A"
+                                            Stroke="#243A63">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="8" />
+                                        </Border.StrokeShape>
+                                        <Image Source="{Binding Icon, Converter={StaticResource ImageUrlConverter}}"
+                                               Aspect="AspectFit" />
+                                    </Border>
+
+                                    <VerticalStackLayout Grid.Column="1"
+                                                         Spacing="3"
+                                                         VerticalOptions="Center">
+                                        <Label Text="{Binding Name}"
+                                               TextColor="White"
+                                               FontAttributes="Bold"
+                                               FontSize="17"
+                                               MaxLines="2"
+                                               LineBreakMode="TailTruncation" />
+                                        <Label Text="{Binding EpgNowSubtitle}"
+                                               TextColor="#8FA6CC"
+                                               FontSize="12"
+                                               LineBreakMode="TailTruncation" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectStreamCommand, Source={x:Reference RootPage}}"
+                                                          CommandParameter="{Binding .}" />
+                                </Border.GestureRecognizers>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <CollectionView ItemsSource="{Binding Streams}"
+                                IsVisible="{Binding IsGridSection}"
+                                ItemSizingStrategy="MeasureFirstItem"
+                                ItemsUpdatingScrollMode="KeepScrollOffset"
+                                SelectionMode="None">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         Span="3"
+                                         HorizontalItemSpacing="10"
+                                         VerticalItemSpacing="12" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout Spacing="5">
+                                <Border BackgroundColor="#07101D"
+                                        Stroke="#1F3356"
+                                        StrokeThickness="1"
+                                        HeightRequest="150">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="8" />
+                                    </Border.StrokeShape>
+                                    <Image Source="{Binding Icon, Converter={StaticResource ImageUrlConverter}}"
+                                           Aspect="AspectFill" />
+                                </Border>
+                                <Label Text="{Binding Name}"
+                                       TextColor="White"
+                                       FontSize="11"
+                                       FontAttributes="Bold"
+                                       MaxLines="2"
+                                       LineBreakMode="TailTruncation" />
+                                <VerticalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectStreamCommand, Source={x:Reference RootPage}}"
+                                                          CommandParameter="{Binding .}" />
+                                </VerticalStackLayout.GestureRecognizers>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.Footer>
+                        <Button Text="Carregar mais"
+                                Command="{Binding LoadMoreCommand}"
+                                IsVisible="{Binding CanLoadMore}"
+                                HeightRequest="38"
+                                Margin="0,10,0,0"
+                                BackgroundColor="#1B273D"
+                                TextColor="White"
+                                FontAttributes="Bold" />
+                    </CollectionView.Footer>
+                </CollectionView>
+
+                <ActivityIndicator IsRunning="{Binding IsLoading}"
+                                   IsVisible="{Binding IsLoading}"
+                                   Color="#FFD34D"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>
