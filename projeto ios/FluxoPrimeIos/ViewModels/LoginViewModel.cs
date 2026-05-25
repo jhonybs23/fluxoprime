@@ -43,8 +43,7 @@ public partial class LoginViewModel : ObservableObject
         var status = await _adminApi.GetStatusAsync();
         if (status.IsAvailable && status.ActiveCount > 0)
         {
-            var name = string.IsNullOrWhiteSpace(status.PrimaryName) ? "servidor principal" : status.PrimaryName;
-            DnsStatusMessage = $"{status.ActiveCount} DNS ativo(s) via painel - {name}";
+            DnsStatusMessage = "DNS sincronizado pelo painel";
             IsDnsReady = true;
             return;
         }

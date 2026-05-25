@@ -32,10 +32,10 @@ public partial class PlayerViewModel : ObservableObject
     private bool _hasError;
 
     [ObservableProperty]
-    private Aspect _videoAspect = Aspect.AspectFill;
+    private Aspect _videoAspect = Aspect.AspectFit;
 
     [ObservableProperty]
-    private string _aspectButtonText = "Ajustar";
+    private string _aspectButtonText = "Preencher";
 
     public PlayerViewModel(ApiClient api, AppLibraryStore libraryStore)
     {
