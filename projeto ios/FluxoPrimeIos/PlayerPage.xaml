@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="FluxoPrimeMaui.PlayerPage"
+             Title="{Binding Stream.Name}"
+             BackgroundColor="Black">
+
+    <Grid RowDefinitions="*,Auto">
+        <toolkit:MediaElement Grid.Row="0"
+                              x:Name="MediaPlayer"
+                              ShouldAutoPlay="True"
+                              ShouldShowPlaybackControls="True"
+                              Aspect="{Binding VideoAspect}"
+                              MediaOpened="MediaPlayer_MediaOpened"
+                              MediaFailed="MediaPlayer_MediaFailed"
+                              StateChanged="MediaPlayer_StateChanged"
+                              PositionChanged="MediaPlayer_PositionChanged"
+                              HorizontalOptions="Fill"
+                              VerticalOptions="Fill" />
+
+        <ActivityIndicator Grid.Row="0"
+                           IsRunning="{Binding IsLoading}"
+                           IsVisible="{Binding IsLoading}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Color="#FFD34D" />
+
+        <Border Grid.Row="0"
+                BackgroundColor="#CC050912"
+                Stroke="#1F3356"
+                Padding="12"
+                Margin="14"
+                VerticalOptions="Start"
+                IsVisible="{Binding HasError}">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="8" />
+            </Border.StrokeShape>
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="#FFB0B0"
+                   FontSize="13" />
+        </Border>
+
+        <Grid Grid.Row="1"
+              ColumnDefinitions="Auto,*,Auto"
+              Padding="12"
+              BackgroundColor="#050912">
+            <Button Text="Voltar"
+                    Command="{Binding GoBackCommand}"
+                    BackgroundColor="#121A2B"
+                    TextColor="#B9C8E8"
+                    Padding="14,8" />
+            <Label Grid.Column="1"
+                   Text="{Binding Stream.Name}"
+                   TextColor="White"
+                   FontSize="14"
+                   FontAttributes="Bold"
+                   LineBreakMode="TailTruncation"
+                   VerticalOptions="Center"
+                   Margin="12,0,0,0" />
+            <Button Grid.Column="2"
+                    Text="{Binding AspectButtonText}"
+                    Command="{Binding ToggleAspectCommand}"
+                    BackgroundColor="#121A2B"
+                    TextColor="#B9C8E8"
+                    Padding="12,8" />
+        </Grid>
+    </Grid>
+</ContentPage>

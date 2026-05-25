@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FluxoPrimeMaui.SettingsPage"
+             Title="Configuracoes">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="15">
+            <Label Text="Configuracoes do Servidor"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Label Text="DNS / URL do Servidor (Xtream Codes)"
+                   FontAttributes="Bold" />
+            <Entry Placeholder="http://seu-dns.com:8080"
+                   Text="{Binding BaseUrl}" />
+
+            <Label Text="Usuario"
+                   FontAttributes="Bold" />
+            <Entry Placeholder="Usuario"
+                   Text="{Binding Username}" />
+
+            <Label Text="Senha"
+                   FontAttributes="Bold" />
+            <Entry Placeholder="Senha"
+                   IsPassword="True"
+                   Text="{Binding Password}" />
+
+            <Button Text="Salvar Configuracoes"
+                    Command="{Binding SaveCommand}" />
+
+            <Button Text="Limpar Dados Salvos"
+                    Command="{Binding ClearCommand}"
+                    BackgroundColor="DarkRed" />
+
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               IsVisible="{Binding IsLoading}" />
+
+            <Label Text="{Binding StatusMessage}"
+                   TextColor="Green"
+                   HorizontalOptions="Center" />
+
+            <Button Text="Voltar"
+                    Command="{Binding GoBackCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
