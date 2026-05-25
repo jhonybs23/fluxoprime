@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "/soEQZk39V8=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Jonathan\\Documents\\Codex\\2026-05-04\\opa-esse-meu-site-web-de\\projeto ios\\FluxoPrimeCore\\FluxoPrimeCore.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Jonathan\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.15\\microsoft.net.illink.tasks.9.0.15.nupkg.sha512",
+    "C:\\Users\\Jonathan\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.15\\microsoft.netcore.app.ref.9.0.15.nupkg.sha512",
+    "C:\\Users\\Jonathan\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.15\\microsoft.windowsdesktop.app.ref.9.0.15.nupkg.sha512",
+    "C:\\Users\\Jonathan\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.15\\microsoft.aspnetcore.app.ref.9.0.15.nupkg.sha512",
+    "C:\\Users\\Jonathan\\.nuget\\packages\\microsoft.ios.ref.net9.0_26.4\\26.4.9015\\microsoft.ios.ref.net9.0_26.4.26.4.9015.nupkg.sha512",
+    "C:\\Users\\Jonathan\\.nuget\\packages\\microsoft.ios.runtime.iossimulator-arm64.net9.0_26.4\\26.4.9015\\microsoft.ios.runtime.iossimulator-arm64.net9.0_26.4.26.4.9015.nupkg.sha512"
+  ],
+  "logs": []
+}
